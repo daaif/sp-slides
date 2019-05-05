@@ -7,7 +7,6 @@ const spawn = require('cross-spawn')
 const tree = require('tree-directory')
 const program = require('commander')
 
-const projectName = (process.argv[2]) ? process.argv[2] : 'slides'
 const spinner = new Spinner({
     text: chalk.cyan('processing.. %s'),
     stream: process.stderr,
@@ -16,9 +15,11 @@ const spinner = new Spinner({
         this.stream.write(msg);
     }
 })
+
 program
-    .version('0.1.0', '-v, --version')
-    .option('-h, --help', 'Show help')
+    .option('-v, --version', 'Show version', version)
+    .option('-h, --help', 'Show help', help)
+
 program.command('new <dir>')
     .action(async (dir) => {
         try {
@@ -39,6 +40,7 @@ program.command('new <dir>')
     })
 
 program.parse(process.argv);
+
 function getReop(projectName) {
     return new Promise((resolve, reject) => {
         try {
@@ -53,6 +55,7 @@ function getReop(projectName) {
     })
 
 }
+
 function installPackages() {
     console.log(chalk.green.bold('Installing Dependencies\n'));
     return new Promise((resolve, reject) => {
@@ -80,4 +83,13 @@ function help() {
     console.log(chalk.green.bold('> sp-slides new <project> : create new project'))
     console.log(chalk.green.bold('> cd project '))
     console.log(chalk.green.bold('------------------------------------------------'))
+}
+
+function version() {
+    try {
+        const package = require('./package.json')
+        console.log(chalk.green.bold(`version: ${package.version}\n`))
+    } catch (error) {
+        console.log(chalk.red.bold(error))
+    }
 }
