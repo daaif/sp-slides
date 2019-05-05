@@ -1,0 +1,24 @@
+{
+  "name": "sp-slides",
+  "version": "1.2.0",
+  "description": "Simple Slides HTML Presentation",
+  "main": "index.js",
+  "bin": {
+    "sp-slides": "index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["html presentation", "slides"],
+  "author": "Aziz Daaif",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "cli-spinner": "^0.2.10",
+    "commander": "^2.20.0",
+    "cross-spawn": "^6.0.5",
+    "shelljs": "^0.8.3",
+    "simple-git": "^1.111.0",
+    "tree-directory": "^0.1.0"
+  }
+}
